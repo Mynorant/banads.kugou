@@ -1,7 +1,6 @@
 package com.banads.kugou;
 
-import android.content.ComponentName;
-import android.content.pm.PackageManager;
+import android.content.DialogInterface;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -15,47 +14,30 @@ public class HookInit implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
         if (!"com.kugou.android".equals(lpparam.packageName)) return;
 
-        XposedBridge.log("模块已加载");
+        XposedBridge.log("酷狗去广告 已加载喵");
 
-        //禁用Act
-        disableComponent("com.kugou.android.app.splash.foresplash.ForeNoBgSplashActivity");
-        disableComponent("com.kugou.android.splash.commission.preview.CommissionPreviewActivity");
-
-        //Hook od.a
         try {
-            Class<?> odA = XposedHelpers.findClass("od.a", lpparam.classLoader);
-            XposedHelpers.findAndHookMethod(odA, "show", new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod(
+				"od.a",
+				lpparam.classLoader,
+				"show",
+				new XC_MethodHook() {
 					@Override
 					protected void beforeHookedMethod(MethodHookParam param) {
-						param.setResult(null);
-						XposedBridge.log("已拦截 od.a Dialog");
+						final android.app.Dialog dialog = (android.app.Dialog) param.thisObject;
+
+						dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                                @Override
+                                public void onShow(DialogInterface di) {
+                                    dialog.dismiss();
+                                    XposedBridge.log("酷狗去广告 od.a 已关闭喵");
+                                }
+                            });
 					}
-				});
-        } catch (Throwable t) {
-            XposedBridge.log("Hook od.a 失败 " + t.getMessage());
-        }
-    }
-
-    //禁用组件
-    private void disableComponent(String className) {
-        try {
-            // 反射获取PackageManager
-            PackageManager pm = (PackageManager) Class.forName("android.app.ActivityThread")
-				.getMethod("currentApplication")
-				.invoke(null).getClass()
-				.getMethod("getPackageManager")
-				.invoke(Class.forName("android.app.ActivityThread")
-						.getMethod("currentApplication").invoke(null));
-
-            ComponentName cn = new ComponentName("com.kugou.android", className);
-            pm.setComponentEnabledSetting(
-				cn,
-				PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-				PackageManager.DONT_KILL_APP
+				}
             );
-            XposedBridge.log("已禁用: " + className);
         } catch (Throwable t) {
-            XposedBridge.log("禁用失败 " + className + ": " + t.getMessage());
+            XposedBridge.log("酷狗去广告 Hook 失败喵: " + t.getMessage());
         }
     }
 }

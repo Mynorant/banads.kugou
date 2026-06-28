@@ -1,8 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="false">
+
+	<ImageView
+		android:id="@+id/bg"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:src="@drawable/bg_main"
+		android:scaleType="centerCrop"/>
 	
-</LinearLayout>
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#33000000"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:padding="24dp"
+		android:gravity="center_horizontal">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="18dp"
+			android:layout_marginRight="18dp"
+			android:background="@drawable/bg_card"
+			android:orientation="vertical"
+			android:padding="20dp"
+			android:elevation="8dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="酷狗去广告"
+				android:textStyle="bold"
+				android:textSize="24sp"
+				android:textColor="#202020"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="18dp"
+				android:background="#30FFFFFF"/>
+
+			<TextView
+				android:id="@+id/tvStatus"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="17sp"
+				android:textColor="#303030"
+				android:lineSpacingExtra="6dp"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="24dp"/>
+
+			<Button
+				android:id="@+id/btnToggle"
+				android:layout_width="match_parent"
+				android:layout_height="52dp"
+				android:background="@drawable/bg_button"
+				android:textColor="#FFFFFF"
+				android:textStyle="bold"
+				android:textSize="18sp"/>
+
+		</LinearLayout>
+
+		<Space
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="项目地址"
+			android:textStyle="bold"
+			android:textSize="15sp"
+			android:textColor="#FFFFFF"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:autoLink="web"
+			android:linksClickable="true"
+			android:text="https://github.com/Mynorant/banads.kugou"
+			android:textColor="#B9E5FF"
+			android:textSize="13sp"/>
+
+		<View
+			android:layout_width="1dp"
+			android:layout_height="10dp"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="背景图片来源"
+			android:textStyle="bold"
+			android:textSize="15sp"
+			android:textColor="#FFFFFF"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:autoLink="web"
+			android:linksClickable="true"
+			android:text="https://www.pixiv.net/artworks/146132286"
+			android:textColor="#B9E5FF"
+			android:textSize="13sp"/>
+
+		<View
+			android:layout_width="1dp"
+			android:layout_height="18dp"/>
+
+	</LinearLayout>
+
+</FrameLayout>
+

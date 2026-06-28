@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.banads.kugou">
+
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
 
     <application
         android:allowBackup="false"
-        android:label="酷狗去广告"
-        android:supportsRtl="true">
+		android:label="酷狗去广告"
+        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+		android:theme="@style/AppTheme">
 
-        <!-- Xposed 模块声明 -->
+        <activity
+            android:name=".MainActivity"
+			android:theme="@style/AppTheme"
+            android:exported="true"
+            android:label="酷狗去广告">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="移除酷狗的开屏广告，由半城雨岁辞开发" />
+            android:value="移除酷狗音乐开屏广告" />
         <meta-data
             android:name="xposedminversion"
             android:value="82" />
