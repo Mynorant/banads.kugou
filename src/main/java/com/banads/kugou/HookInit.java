@@ -1,7 +1,6 @@
 package com.banads.kugou;
 
 import android.content.DialogInterface;
-
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;

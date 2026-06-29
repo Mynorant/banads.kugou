@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
         tvStatus.setText(  
 			"ForeNoBgSplashActivity: " + (s ? "已禁用喵" : "未禁用喵")  
 			+ "\nCommissionPreviewActivity: " + (c ? "已禁用喵" : "未禁用喵")  
-			+ "\n\n操作后请强制停止酷狗再打开喵"  
+			+ "\n\n禁用Act会停止应用进程喵，LSP里启用了模块的话直接打开酷狗就行了喵"  
         );  
 
         btnToggle.setText(isBothDisabled() ? "一键恢复这俩Act喵" : "一键禁用这俩Act喵");  
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
     private void disableBoth() {  
         su("pm disable " + PKG + "/" + ACT_SPLASH);  
         su("pm disable " + PKG + "/" + ACT_COMMISSION);  
-        Toast.makeText(this, "已禁用喵，请强制停止酷狗后重新打开喵", Toast.LENGTH_LONG).show();  
+        Toast.makeText(this, "已禁用喵", Toast.LENGTH_LONG).show();  
     }  
 
     private void enableBoth() {  
